@@ -87,38 +87,47 @@ public class SystemOutReporter implements Reporter {
 		List<SiteResult> toplist = new ArrayList<SiteResult>();
 		toplist.addAll(results);
 		Collections.sort(toplist);
-		
+
 		System.out.println("-------------------------------------");
 		System.out.println("TopList (kb):");
 
-		for (int i = 0; i < TOPLIST_ITEMS; i++)
+		for (int i = 0; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS); i++)
 			System.out.println(toplist.get(i).getSite().getUrl() + " "
-					+  Math.round(toplist.get(i).getTotalSavings()*100)/100.0d);
+					+ Math.round(toplist.get(i).getTotalSavings() * 100)
+					/ 100.0d);
 
 		System.out.println("-------------------------------------");
 		System.out.println("BottomList (kb):");
 
-		for (int i = 1; i < TOPLIST_ITEMS + 1; i++)
+		for (int i = 1; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS) + 1; i++)
 			System.out.println(toplist.get(toplist.size() - i).getSite()
 					.getUrl()
-					+ " " +  Math.round(toplist.get(toplist.size() - i).getTotalSavings()*100)/100.0d);
+					+ " "
+					+ Math.round(toplist.get(toplist.size() - i)
+							.getTotalSavings() * 100) / 100.0d);
 
 		Collections.sort(toplist, new SavingsPercentageComparator());
 
 		System.out.println("-------------------------------------");
 		System.out.println("TopList %:");
-		for (int i = 0; i < TOPLIST_ITEMS; i++)
+		for (int i = 0; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS); i++)
 			System.out.println(toplist.get(i).getSite().getUrl() + " "
-					+  Math.round(toplist.get(i).getSavingsPercentage()*100)/100.0d);
+					+ Math.round(toplist.get(i).getSavingsPercentage() * 100)
+					/ 100.0d);
 
 		System.out.println("-------------------------------------");
 		System.out.println("BottomList %:");
 
-		for (int i = 1; i < TOPLIST_ITEMS + 1; i++)
+		for (int i = 1; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS) + 1; i++)
 			System.out.println(toplist.get(toplist.size() - i).getSite()
 					.getUrl()
 					+ " "
-					+ Math.round(toplist.get(toplist.size() - i).getSavingsPercentage()*100)/100.0d);
+					+ Math.round(toplist.get(toplist.size() - i)
+							.getSavingsPercentage() * 100) / 100.0d);
 
 	}
 
