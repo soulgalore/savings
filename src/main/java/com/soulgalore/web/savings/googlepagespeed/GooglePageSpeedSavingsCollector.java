@@ -44,21 +44,16 @@ public class GooglePageSpeedSavingsCollector implements SavingsCollector {
 
 	private final static Map<String, DescriptiveStatistics> statistics = new HashMap<String, DescriptiveStatistics>();
 
-	private final SiteReader reader;
 	private final HTTPBodyFetcher fetcher;
 	private final SiteResultCollector siteResultCollector;
-	private final Reporter reporter;
 	private final String key;
 
 	@Inject
-	public GooglePageSpeedSavingsCollector(SiteReader reader,
+	public GooglePageSpeedSavingsCollector(
 			HTTPBodyFetcher fetcher, SiteResultCollector siteResultCollector,
-			Reporter reporter,
 			@Named("com.soulgalore.web.savings.googlekey") String key) {
-		this.reader = reader;
 		this.fetcher = fetcher;
 		this.siteResultCollector = siteResultCollector;
-		this.reporter = reporter;
 		this.key = key;
 
 		for (String rule : GooglePageSpeedSiteResultCollector.RULES) {
@@ -67,8 +62,8 @@ public class GooglePageSpeedSavingsCollector implements SavingsCollector {
 
 	}
 
-	public void collect(File file) throws IOException {
-		List<Site> sites = reader.get(file);
+	public  Set<SiteResult> collect(List<Site> sites) throws IOException {
+
 		Set<SiteResult> results = new HashSet<SiteResult>();
 		for (Site site : sites) {
 
@@ -78,7 +73,13 @@ public class GooglePageSpeedSavingsCollector implements SavingsCollector {
 			if (result!=null)
 				results.add(result);
 		}
-		reporter.report(results, statistics);
+		return results;
+	}
+
+	@Override
+	public Map<String, DescriptiveStatistics> getStatistics() {
+	
+		return statistics;
 	}
 
 }

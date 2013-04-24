@@ -20,9 +20,20 @@
  */
 package com.soulgalore.web.savings;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+
+import com.soulgalore.web.savings.impl.Site;
+import com.soulgalore.web.savings.impl.SiteResult;
 
 public interface SavingsCollector {
-	public void collect(File file) throws IOException;
+	
+	public Set<SiteResult> collect(List<Site> sites) throws IOException;
+	
+	public Map<String, DescriptiveStatistics> getStatistics();
+	
 }
