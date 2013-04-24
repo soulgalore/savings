@@ -60,6 +60,13 @@ public class GooglePageSpeedSiteResultCollector implements SiteResultCollector {
 					+ " the json element was null");
 			return null;
 		}
+		
+		if (jElement.getAsJsonObject().get("responseCode")==null) {
+			System.out.println("Skipping " + site.getUrl()
+					+ " missing response code");
+			return null;
+		}
+			
 
 		if (jElement.getAsJsonObject().get("responseCode").getAsInt() != 200) {
 			System.out.println("Skipping "

@@ -72,9 +72,11 @@ public class GooglePageSpeedSavingsCollector implements SavingsCollector {
 		Set<SiteResult> results = new HashSet<SiteResult>();
 		for (Site site : sites) {
 
-			results.add(siteResultCollector.collectSiteResult(
+			SiteResult result = siteResultCollector.collectSiteResult(
 					fetcher.getBody("https://www.googleapis.com/pagespeedonline/v1/runPagespeed?url=http://"
-							+ site.getUrl() + "&key=" + key), site, statistics));
+							+ site.getUrl() + "&key=" + key), site, statistics);
+			if (result!=null)
+				results.add(result);
 		}
 		reporter.report(results, statistics);
 	}
