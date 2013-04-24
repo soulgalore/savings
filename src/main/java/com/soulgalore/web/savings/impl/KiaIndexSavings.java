@@ -46,6 +46,7 @@ public class KiaIndexSavings {
 
 		File file = new File(args[0]);
 
+		System.out.println("Start fetching savings for " + file.getAbsolutePath());
 		try {
 			stats.collect(file);
 		} catch (IOException e) {
