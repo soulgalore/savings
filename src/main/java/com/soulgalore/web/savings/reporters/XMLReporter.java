@@ -20,6 +20,9 @@
  */
 package com.soulgalore.web.savings.reporters;
 
+import java.io.FileWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -43,8 +46,10 @@ public class XMLReporter implements Reporter {
 	public void report(Set<SiteResult> results,
 			Map<String, DescriptiveStatistics> statistics) {
 
+		Date reportDate = new Date();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 		Element root = new Element("savings");
-		root.setAttribute("date", "" + new Date());
+		root.setAttribute("date", "" + reportDate);
 
 		Element resultsXML = new Element("results");
 		root.addContent(resultsXML);
@@ -157,8 +162,11 @@ public class XMLReporter implements Reporter {
 
 		Document doc = new Document(root);
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+
 		try {
-			System.out.println(outputter.outputString(doc));
+			FileWriter writer = new FileWriter("report-"
+					+ df.format(reportDate) + ".xml");
+			outputter.output(doc, writer);
 		} catch (Exception e) {
 		}
 	}
