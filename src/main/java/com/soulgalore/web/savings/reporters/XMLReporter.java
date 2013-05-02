@@ -59,6 +59,7 @@ public class XMLReporter implements Reporter {
 					* siteResult.getSite().getUniqueBrowsers();
 			Element site = new Element("site");
 			Element url = new Element("url");
+			Element weight = new Element("total-page-weight");
 			Element savingsPerPage = new Element("savings-per-page");
 			Element savingsForPW = new Element("savings-for-page-view");
 			Element savingsForUnique = new Element("savings-for-unique-browsers");
@@ -81,6 +82,8 @@ public class XMLReporter implements Reporter {
 			savingsPercentage.addContent("" + Math.round(siteResult
 							.getSavingsPercentage() * 100) / 100.0d);
 			
+			weight.addContent("" + humanReadableByteCount(siteResult.getTotalSizeBytes()/1000, true));
+			
 			Element rulesSavings = new Element("rule-savings");
 			for (RuleResult ruleResult : siteResult.getResults()) {
 				Element rule = new Element(ruleResult.getRule());
@@ -89,11 +92,12 @@ public class XMLReporter implements Reporter {
 			}
 
 			site.addContent(url);
+			site.addContent(weight);
 			site.addContent(savingsPerPage);
 			site.addContent(savingsForPW);
 			site.addContent(savingsForUnique);
 			site.addContent(savingsPercentage);
-			site.addContent(rulesSavings);
+			site.addContent(rulesSavings);		
 			resultsXML.addContent(site);
 		}
 
