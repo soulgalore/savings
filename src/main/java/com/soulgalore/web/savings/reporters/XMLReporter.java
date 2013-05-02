@@ -20,8 +20,6 @@
  */
 package com.soulgalore.web.savings.reporters;
 
-
-
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -39,17 +37,18 @@ import com.soulgalore.web.savings.impl.SiteResult;
 
 public class XMLReporter implements Reporter {
 
+	private final static String READABLE = "readable";
+	private final static String KB = "kb";
 
 	public void report(Set<SiteResult> results,
 			Map<String, DescriptiveStatistics> statistics) {
 
 		Element root = new Element("savings");
-		root.setAttribute("date", ""+ new Date());
-		
+		root.setAttribute("date", "" + new Date());
+
 		Element resultsXML = new Element("results");
 		root.addContent(resultsXML);
-		
-		
+
 		Double totalPw = 0D;
 		Double totalUnique = 0D;
 		for (SiteResult siteResult : results) {
@@ -62,32 +61,60 @@ public class XMLReporter implements Reporter {
 			Element weight = new Element("total-page-weight");
 			Element savingsPerPage = new Element("savings-per-page");
 			Element savingsForPW = new Element("savings-for-page-view");
-			Element savingsForUnique = new Element("savings-for-unique-browsers");
+			Element savingsForUnique = new Element(
+					"savings-for-unique-browsers");
 			Element savingsPercentage = new Element("savings-percentage");
-			
+
 			url.addContent(new CDATA(siteResult.getSite().getUrl()));
 
-			savingsPerPage.addContent(
-							 humanReadableByteCount(
-									Math.round(siteResult.getTotalSavings()),
-									true));
-			savingsForPW.addContent(humanReadableByteCount(
-									Math.round(siteResult.getTotalSavings()
-											* siteResult.getSite()
-													.getPageViews()), true));
-			savingsForUnique.addContent(humanReadableByteCount(
+			savingsPerPage.setAttribute(
+					READABLE,
+					humanReadableByteCount(
+							Math.round(siteResult.getTotalSavings()), true));
+			savingsPerPage.setAttribute(KB,
+					"" + Math.round(siteResult.getTotalSavings()));
+
+			savingsForPW.setAttribute(
+					READABLE,
+					humanReadableByteCount(
+							Math.round(siteResult.getTotalSavings()
+									* siteResult.getSite().getPageViews()),
+							true));
+			savingsForPW.setAttribute(
+					KB,
+					""
+							+ Math.round(siteResult.getTotalSavings()
+									* siteResult.getSite().getPageViews()));
+
+			savingsForUnique
+					.setAttribute(
+							READABLE,
+							humanReadableByteCount(
 									Math.round(siteResult.getTotalSavings()
 											* siteResult.getSite()
 													.getUniqueBrowsers()), true));
-			savingsPercentage.addContent("" + Math.round(siteResult
-							.getSavingsPercentage() * 100) / 100.0d);
-			
-			weight.addContent("" + humanReadableByteCount(siteResult.getTotalSizeBytes()/1000, true));
-			
+			savingsForUnique
+					.setAttribute(
+							KB,
+							""
+									+ Math.round(siteResult.getTotalSavings()
+											* siteResult.getSite()
+													.getUniqueBrowsers()));
+
+			savingsPercentage.addContent(""
+					+ Math.round(siteResult.getSavingsPercentage() * 100)
+					/ 100.0d);
+
+			weight.setAttribute(
+					READABLE,
+					humanReadableByteCount(
+							siteResult.getTotalSizeBytes() / 1000, true));
+			weight.setAttribute(KB, "" + siteResult.getTotalSizeBytes() / 1000);
+
 			Element rulesSavings = new Element("rule-savings");
 			for (RuleResult ruleResult : siteResult.getResults()) {
 				Element rule = new Element(ruleResult.getRule());
-				rule.addContent(""+ruleResult.getSavings());
+				rule.addContent("" + ruleResult.getSavings());
 				rulesSavings.addContent(rule);
 			}
 
@@ -97,45 +124,47 @@ public class XMLReporter implements Reporter {
 			site.addContent(savingsForPW);
 			site.addContent(savingsForUnique);
 			site.addContent(savingsPercentage);
-			site.addContent(rulesSavings);		
+			site.addContent(rulesSavings);
 			resultsXML.addContent(site);
 		}
 
-			
 		Element summary = new Element("summary");
-		summary.setAttribute("nrofsites", ""+results.size());
-		Element totalPW  = new Element("total-pw");
-		Element totalUniqueSummary  = new Element("total-unique");
-		totalPW.addContent(humanReadableByteCount(Math.round(totalPw), true));
-		totalUniqueSummary.addContent(humanReadableByteCount(Math.round(totalUnique), true));
+		summary.setAttribute("nrofsites", "" + results.size());
+		Element totalPW = new Element("total-pw");
+		Element totalUniqueSummary = new Element("total-unique");
+		totalPW.setAttribute(READABLE,
+				humanReadableByteCount(Math.round(totalPw), true));
+		totalPW.setAttribute(KB, "" + Math.round(totalPw));
+		totalUniqueSummary.setAttribute(READABLE,
+				humanReadableByteCount(Math.round(totalUnique), true));
+		totalUniqueSummary.setAttribute(KB, "" + Math.round(totalUnique));
 		summary.addContent(totalPW);
 		summary.addContent(totalUniqueSummary);
-		
+
 		for (String rule : statistics.keySet()) {
 			DescriptiveStatistics stats = statistics.get(rule);
 			Element ruleElement = new Element(rule);
 			Element max = new Element("max");
 			Element median = new Element("median");
-			max.addContent(""+stats.getMax());
-			median.addContent(""+stats.getPercentile(50));
+			max.addContent("" + stats.getMax());
+			median.addContent("" + stats.getPercentile(50));
 			ruleElement.addContent(max);
 			ruleElement.addContent(median);
 			summary.addContent(ruleElement);
 		}
-		
+
 		resultsXML.addContent(summary);
 
-		
 		Document doc = new Document(root);
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 		try {
 			System.out.println(outputter.outputString(doc));
 		} catch (Exception e) {
-			}
+		}
 	}
 
 	private String humanReadableByteCount(long kbytes, boolean si) {
-		int unit = si ? 1000 : 1024;
+		int unit = si ? 1024 : 1000;
 		long bytes = kbytes * unit;
 		if (bytes < unit)
 			return bytes + " B";
