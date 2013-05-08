@@ -29,9 +29,11 @@ import java.util.Set;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import com.soulgalore.web.savings.Reporter;
+import com.soulgalore.web.savings.impl.PageSizeComparator;
 import com.soulgalore.web.savings.impl.RuleResult;
 import com.soulgalore.web.savings.impl.SavingsPercentageComparator;
 import com.soulgalore.web.savings.impl.SiteResult;
+import com.soulgalore.web.savings.impl.TotalSavingsComparator;
 
 public class SystemOutReporter implements Reporter {
 
@@ -64,6 +66,7 @@ public class SystemOutReporter implements Reporter {
 									Math.round(siteResult.getTotalSavings()
 											* siteResult.getSite()
 													.getUniqueBrowsers()), true));
+			System.out.println("Total page size:" + siteResult.getTotalSizeBytes() / 1000 + " kb");
 			for (RuleResult ruleResult : siteResult.getResults()) {
 				System.out.println(ruleResult.getRule() + " "
 						+ ruleResult.getSavings() + " kb");
@@ -74,9 +77,9 @@ public class SystemOutReporter implements Reporter {
 		System.out.println("-------------------------------------");
 		System.out.println("Tested " + results.size() + " sites");
 		System.out.println("total pw:"
-				+ humanReadableByteCount(Math.round(totalPw), true));
+				+ humanReadableByteCount(Math.round(totalPw), true) +  " or in kb " + totalPw);
 		System.out.println("total unique:"
-				+ humanReadableByteCount(Math.round(totalUnique), true));
+				+ humanReadableByteCount(Math.round(totalUnique), true) + " or in kb " + totalUnique);
 
 		for (String rule : statistics.keySet()) {
 			DescriptiveStatistics stats = statistics.get(rule);
@@ -129,10 +132,28 @@ public class SystemOutReporter implements Reporter {
 					+ Math.round(toplist.get(toplist.size() - i)
 							.getSavingsPercentage() * 100) / 100.0d);
 
+		System.out.println("-------------------------------------");
+		System.out.println("TopList most savings:");
+		Collections.sort(toplist, new TotalSavingsComparator());
+		for (int i = 0; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS); i++)
+			System.out.println(humanReadableByteCount(
+					Math.round(toplist.get(i).getTotalSavings()
+							*toplist.get(i).getSite()
+									.getUniqueBrowsers()), true));
+		
+		System.out.println("-------------------------------------");
+		System.out.println("TopList largest sites:");
+		Collections.sort(toplist, new PageSizeComparator());
+		for (int i = 0; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS); i++)
+			System.out.println(humanReadableByteCount(
+					Math.round(toplist.get(i).getTotalSizeBytes()/1000), true));
+		
 	}
 
 	private String humanReadableByteCount(long kbytes, boolean si) {
-		int unit = si ? 1000 : 1024;
+		int unit = si ? 1024 : 1000;
 		long bytes = kbytes * unit;
 		if (bytes < unit)
 			return bytes + " B";
