@@ -135,20 +135,20 @@ public class SystemOutReporter implements Reporter {
 		System.out.println("-------------------------------------");
 		System.out.println("TopList most savings:");
 		Collections.sort(toplist, new TotalSavingsComparator());
-		for (int i = 0; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
-				: TOPLIST_ITEMS); i++)
-			System.out.println(humanReadableByteCount(
-					Math.round(toplist.get(i).getTotalSavings()
-							*toplist.get(i).getSite()
+		for (int i = 1; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS) + 1; i++)
+			System.out.println(toplist.get(toplist.size() - i).getSite().getUrl() + " " + humanReadableByteCount(
+					Math.round(toplist.get(toplist.size() - i).getTotalSavings()
+							*toplist.get(toplist.size() - i).getSite()
 									.getUniqueBrowsers()), true));
 		
 		System.out.println("-------------------------------------");
 		System.out.println("TopList largest sites:");
 		Collections.sort(toplist, new PageSizeComparator());
-		for (int i = 0; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
-				: TOPLIST_ITEMS); i++)
-			System.out.println(humanReadableByteCount(
-					Math.round(toplist.get(i).getTotalSizeBytes()/1000), true));
+		for (int i = 1; i < (toplist.size() < TOPLIST_ITEMS ? toplist.size()
+				: TOPLIST_ITEMS) + 1; i++)
+			System.out.println(toplist.get(toplist.size() - i).getSite().getUrl() + " " + humanReadableByteCount(
+					Math.round(toplist.get(toplist.size() - i).getTotalSizeBytes()/1000), true));
 		
 	}
 

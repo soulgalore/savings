@@ -26,9 +26,11 @@ public class TotalSavingsComparator implements Comparator<SiteResult> {
 
 	@Override
 	public int compare(SiteResult o1, SiteResult o2) {
-		if (o1.getTotalSavings() > o2.getTotalSavings())
+		if ((o1.getTotalSavings() * o1.getSite().getUniqueBrowsers()) > (o2
+				.getTotalSavings() * o2.getSite().getUniqueBrowsers()))
 			return 1;
-		else if (o1.getTotalSavings() < o2.getTotalSavings())
+		else if ((o1.getTotalSavings() * o1.getSite().getUniqueBrowsers()) < (o2
+				.getTotalSavings() * o2.getSite().getUniqueBrowsers()))
 			return -1;
 		return 0;
 	}
