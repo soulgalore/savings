@@ -1,4 +1,4 @@
-Check how much you can save in KB in one page
+Check how much you can save in kb for one page
 ==============
 
 Background:
