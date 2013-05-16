@@ -18,22 +18,22 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.guice;
+package com.soulgalore.web.pagesavings.guice;
 
 import java.util.Properties;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-import com.soulgalore.web.savings.SavingsCollector;
-import com.soulgalore.web.savings.HTTPBodyFetcher;
-import com.soulgalore.web.savings.Reporter;
-import com.soulgalore.web.savings.SiteReader;
-import com.soulgalore.web.savings.SiteResultCollector;
-import com.soulgalore.web.savings.googlepagespeed.GooglePageSpeedSavingsCollector;
-import com.soulgalore.web.savings.googlepagespeed.GooglePageSpeedSiteResultCollector;
-import com.soulgalore.web.savings.impl.HTTPClientBodyFetcher;
-import com.soulgalore.web.savings.impl.KiaIndexSiteReader;
-import com.soulgalore.web.savings.reporters.SystemOutReporter;
+import com.soulgalore.web.pagesavings.HTTPBodyFetcher;
+import com.soulgalore.web.pagesavings.Reporter;
+import com.soulgalore.web.pagesavings.SavingsCollector;
+import com.soulgalore.web.pagesavings.SiteReader;
+import com.soulgalore.web.pagesavings.SiteResultCollector;
+import com.soulgalore.web.pagesavings.googlepagespeed.GooglePageSpeedSavingsCollector;
+import com.soulgalore.web.pagesavings.googlepagespeed.GooglePageSpeedSiteResultCollector;
+import com.soulgalore.web.pagesavings.impl.HTTPClientBodyFetcher;
+import com.soulgalore.web.pagesavings.impl.KiaIndexSiteReader;
+import com.soulgalore.web.pagesavings.reporters.SystemOutReporter;
 
 public class KiaIndexModule extends AbstractModule {
 

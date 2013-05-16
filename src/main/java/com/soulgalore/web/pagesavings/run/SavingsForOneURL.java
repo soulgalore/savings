@@ -1,4 +1,4 @@
-package com.soulgalore.web.savings.run;
+package com.soulgalore.web.pagesavings.run;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,13 +8,13 @@ import java.util.Set;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.soulgalore.web.savings.SavingsCollector;
-import com.soulgalore.web.savings.SiteResultCollector;
-import com.soulgalore.web.savings.googlepagespeed.GooglePageSpeedSiteResultCollector;
-import com.soulgalore.web.savings.guice.OnePageModule;
-import com.soulgalore.web.savings.impl.RuleResult;
-import com.soulgalore.web.savings.impl.Site;
-import com.soulgalore.web.savings.impl.SiteResult;
+import com.soulgalore.web.pagesavings.SavingsCollector;
+import com.soulgalore.web.pagesavings.SiteResultCollector;
+import com.soulgalore.web.pagesavings.googlepagespeed.GooglePageSpeedSiteResultCollector;
+import com.soulgalore.web.pagesavings.guice.OnePageModule;
+import com.soulgalore.web.pagesavings.impl.RuleResult;
+import com.soulgalore.web.pagesavings.impl.Site;
+import com.soulgalore.web.pagesavings.impl.SiteResult;
 
 public class SavingsForOneURL {
 

@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.googlepagespeed;
+package com.soulgalore.web.pagesavings.googlepagespeed;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,13 +32,13 @@ import java.util.Set;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.soulgalore.web.savings.SavingsCollector;
-import com.soulgalore.web.savings.HTTPBodyFetcher;
-import com.soulgalore.web.savings.Reporter;
-import com.soulgalore.web.savings.SiteReader;
-import com.soulgalore.web.savings.SiteResultCollector;
-import com.soulgalore.web.savings.impl.Site;
-import com.soulgalore.web.savings.impl.SiteResult;
+import com.soulgalore.web.pagesavings.HTTPBodyFetcher;
+import com.soulgalore.web.pagesavings.Reporter;
+import com.soulgalore.web.pagesavings.SavingsCollector;
+import com.soulgalore.web.pagesavings.SiteReader;
+import com.soulgalore.web.pagesavings.SiteResultCollector;
+import com.soulgalore.web.pagesavings.impl.Site;
+import com.soulgalore.web.pagesavings.impl.SiteResult;
 
 public class GooglePageSpeedSavingsCollector implements SavingsCollector {
 

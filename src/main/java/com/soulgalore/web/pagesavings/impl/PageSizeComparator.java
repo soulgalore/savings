@@ -18,16 +18,19 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings;
+package com.soulgalore.web.pagesavings.impl;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.Comparator;
 
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+public class PageSizeComparator implements Comparator<SiteResult> {
 
-import com.soulgalore.web.savings.impl.SiteResult;
+	@Override
+	public int compare(SiteResult o1, SiteResult o2) {
+		if (o1.getTotalSizeBytes() > o2.getTotalSizeBytes())
+			return 1;
+		else if (o1.getTotalSizeBytes() < o2.getTotalSizeBytes())
+			return -1;
+		return 0;
+	}
 
-public interface Reporter {
-
-	public void report(Set<SiteResult> results, Map<String, DescriptiveStatistics> statistics);
 }

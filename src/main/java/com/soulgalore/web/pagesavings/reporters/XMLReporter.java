@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.reporters;
+package com.soulgalore.web.pagesavings.reporters;
 
 import java.io.FileWriter;
 import java.text.DateFormat;
@@ -34,9 +34,9 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import com.soulgalore.web.savings.Reporter;
-import com.soulgalore.web.savings.impl.RuleResult;
-import com.soulgalore.web.savings.impl.SiteResult;
+import com.soulgalore.web.pagesavings.Reporter;
+import com.soulgalore.web.pagesavings.impl.RuleResult;
+import com.soulgalore.web.pagesavings.impl.SiteResult;
 
 public class XMLReporter implements Reporter {
 

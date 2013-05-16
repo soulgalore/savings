@@ -18,37 +18,16 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.impl;
+package com.soulgalore.web.pagesavings;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import com.google.common.io.Files;
-import com.soulgalore.web.savings.SiteReader;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-public class KiaIndexSiteReader implements SiteReader {
+import com.soulgalore.web.pagesavings.impl.SiteResult;
 
-	@Override
-	public List<Site> get(File file) throws IOException {
+public interface Reporter {
 
-		List<String> urlsAndPw = Files
-				.readLines(file, Charset.defaultCharset());
-		List<Site> sites = new LinkedList<Site>();
-		
-		// the kia file is dirrrty
-		for (String urlAndPw : urlsAndPw) {
-			if (urlAndPw.contains(".")) {
-				if (!urlAndPw.contains(" ")) {
-					String[] u = urlAndPw.split(",");
-					sites.add(new Site(u[0], Long.parseLong(u[1]), Long
-							.parseLong(u[2])));
-				}
-			}
-		}
-		return sites;
-	}
-
+	public void report(Set<SiteResult> results, Map<String, DescriptiveStatistics> statistics);
 }

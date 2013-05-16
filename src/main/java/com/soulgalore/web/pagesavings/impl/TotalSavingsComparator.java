@@ -18,22 +18,21 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings;
+package com.soulgalore.web.pagesavings.impl;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.Comparator;
 
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+public class TotalSavingsComparator implements Comparator<SiteResult> {
 
-import com.soulgalore.web.savings.impl.Site;
-import com.soulgalore.web.savings.impl.SiteResult;
+	@Override
+	public int compare(SiteResult o1, SiteResult o2) {
+		if ((o1.getTotalSavings() * o1.getSite().getUniqueBrowsers()) > (o2
+				.getTotalSavings() * o2.getSite().getUniqueBrowsers()))
+			return 1;
+		else if ((o1.getTotalSavings() * o1.getSite().getUniqueBrowsers()) < (o2
+				.getTotalSavings() * o2.getSite().getUniqueBrowsers()))
+			return -1;
+		return 0;
+	}
 
-public interface SavingsCollector {
-	
-	public Set<SiteResult> collect(List<Site> sites) throws IOException;
-	
-	public Map<String, DescriptiveStatistics> getStatistics();
-	
 }

@@ -18,14 +18,14 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings;
+package com.soulgalore.web.pagesavings;
 
 import java.util.Map;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import com.soulgalore.web.savings.impl.Site;
-import com.soulgalore.web.savings.impl.SiteResult;
+import com.soulgalore.web.pagesavings.impl.Site;
+import com.soulgalore.web.pagesavings.impl.SiteResult;
 
 public interface SiteResultCollector {
 

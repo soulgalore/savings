@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.run;
+package com.soulgalore.web.pagesavings.run;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,13 +27,13 @@ import java.util.Set;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.soulgalore.web.savings.Reporter;
-import com.soulgalore.web.savings.SavingsCollector;
-import com.soulgalore.web.savings.SiteReader;
-import com.soulgalore.web.savings.googlepagespeed.GooglePageSpeedSavingsCollector;
-import com.soulgalore.web.savings.guice.KiaIndexModule;
-import com.soulgalore.web.savings.impl.Site;
-import com.soulgalore.web.savings.impl.SiteResult;
+import com.soulgalore.web.pagesavings.Reporter;
+import com.soulgalore.web.pagesavings.SavingsCollector;
+import com.soulgalore.web.pagesavings.SiteReader;
+import com.soulgalore.web.pagesavings.googlepagespeed.GooglePageSpeedSavingsCollector;
+import com.soulgalore.web.pagesavings.guice.KiaIndexModule;
+import com.soulgalore.web.pagesavings.impl.Site;
+import com.soulgalore.web.pagesavings.impl.SiteResult;
 
 public class KiaIndexSavings {
 

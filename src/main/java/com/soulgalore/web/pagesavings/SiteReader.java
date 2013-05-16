@@ -18,21 +18,16 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.impl;
+package com.soulgalore.web.pagesavings;
 
-import java.util.Comparator;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
-public class TotalSavingsComparator implements Comparator<SiteResult> {
+import com.soulgalore.web.pagesavings.impl.Site;
 
-	@Override
-	public int compare(SiteResult o1, SiteResult o2) {
-		if ((o1.getTotalSavings() * o1.getSite().getUniqueBrowsers()) > (o2
-				.getTotalSavings() * o2.getSite().getUniqueBrowsers()))
-			return 1;
-		else if ((o1.getTotalSavings() * o1.getSite().getUniqueBrowsers()) < (o2
-				.getTotalSavings() * o2.getSite().getUniqueBrowsers()))
-			return -1;
-		return 0;
-	}
+public interface SiteReader {
 
+	public List<Site> get(File file) throws IOException;
+	
 }

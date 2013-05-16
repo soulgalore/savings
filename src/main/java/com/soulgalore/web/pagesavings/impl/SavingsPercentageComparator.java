@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.impl;
+package com.soulgalore.web.pagesavings.impl;
 
 import java.util.Comparator;
 

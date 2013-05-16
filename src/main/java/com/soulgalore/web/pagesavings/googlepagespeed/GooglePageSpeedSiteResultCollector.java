@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.googlepagespeed;
+package com.soulgalore.web.pagesavings.googlepagespeed;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -29,10 +29,10 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.soulgalore.web.savings.SiteResultCollector;
-import com.soulgalore.web.savings.impl.RuleResult;
-import com.soulgalore.web.savings.impl.Site;
-import com.soulgalore.web.savings.impl.SiteResult;
+import com.soulgalore.web.pagesavings.SiteResultCollector;
+import com.soulgalore.web.pagesavings.impl.RuleResult;
+import com.soulgalore.web.pagesavings.impl.Site;
+import com.soulgalore.web.pagesavings.impl.SiteResult;
 
 public class GooglePageSpeedSiteResultCollector implements SiteResultCollector {
 

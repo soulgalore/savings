@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.impl;
+package com.soulgalore.web.pagesavings.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +30,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.soulgalore.web.savings.HTTPBodyFetcher;
+import com.soulgalore.web.pagesavings.HTTPBodyFetcher;
 
 public class HTTPClientBodyFetcher implements HTTPBodyFetcher {
 

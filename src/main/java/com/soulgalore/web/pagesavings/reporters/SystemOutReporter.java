@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.reporters;
+package com.soulgalore.web.pagesavings.reporters;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,12 +28,12 @@ import java.util.Set;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import com.soulgalore.web.savings.Reporter;
-import com.soulgalore.web.savings.impl.PageSizeComparator;
-import com.soulgalore.web.savings.impl.RuleResult;
-import com.soulgalore.web.savings.impl.SavingsPercentageComparator;
-import com.soulgalore.web.savings.impl.SiteResult;
-import com.soulgalore.web.savings.impl.TotalSavingsComparator;
+import com.soulgalore.web.pagesavings.Reporter;
+import com.soulgalore.web.pagesavings.impl.PageSizeComparator;
+import com.soulgalore.web.pagesavings.impl.RuleResult;
+import com.soulgalore.web.pagesavings.impl.SavingsPercentageComparator;
+import com.soulgalore.web.pagesavings.impl.SiteResult;
+import com.soulgalore.web.pagesavings.impl.TotalSavingsComparator;
 
 public class SystemOutReporter implements Reporter {
 

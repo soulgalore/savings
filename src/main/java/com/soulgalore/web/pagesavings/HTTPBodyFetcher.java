@@ -18,7 +18,7 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings;
+package com.soulgalore.web.pagesavings;
 
 import java.io.IOException;
 

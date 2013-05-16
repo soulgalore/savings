@@ -18,37 +18,32 @@
  *
  *******************************************************
  */
-package com.soulgalore.web.savings.impl;
+package com.soulgalore.web.pagesavings.impl;
 
-public class Site {
+public class RuleResult {
 
-	private String url;
-	private long pageViews;
-	private long uniqueBrowsers;
+	private Double savings;
+	private String rule;
 
-	public Site(String url, long uniqueBrowsers, long pageViews) {
-		this.url = url;
-		this.pageViews = pageViews;
-		this.uniqueBrowsers = uniqueBrowsers;
+	public RuleResult(String rule, Double savings) {
+		this.savings = savings;
+		this.rule = rule;
 	}
 
-	public String getUrl() {
-		return url;
+	public Double getSavings() {
+		return savings;
 	}
 
-	public long getPageViews() {
-		return pageViews;
-	}
-
-	public long getUniqueBrowsers() {
-		return uniqueBrowsers;
+	public String getRule() {
+		return rule;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((url == null) ? 0 : url.hashCode());
+		result = prime * result + ((rule == null) ? 0 : rule.hashCode());
+		result = prime * result + ((savings == null) ? 0 : savings.hashCode());
 		return result;
 	}
 
@@ -60,14 +55,19 @@ public class Site {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Site other = (Site) obj;
-		if (url == null) {
-			if (other.url != null)
-
+		RuleResult other = (RuleResult) obj;
+		if (rule == null) {
+			if (other.rule != null)
 				return false;
-		} else if (!url.equals(other.url))
+		} else if (!rule.equals(other.rule))
+			return false;
+		if (savings == null) {
+			if (other.savings != null)
+				return false;
+		} else if (!savings.equals(other.savings))
 			return false;
 		return true;
 	}
 
+	
 }
