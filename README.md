@@ -15,9 +15,9 @@ The backend is Google Page Speed API and the following rules are checked:
 * ServeScaledImages
 
 You can run it like this (the kiafile is the kiaindex excel file, saved as csv with only the relevant columns):
-<pre>KiaIndexSavings pathToKiaFile GoogleAPIKey</pre>
+<pre>om.soulgalore.web.pagesavings.run.KiaIndexSavings pathToKiaFile GoogleAPIKey</pre>
 
 or
-<pre>SavingsForOneURL URL GoogleAPIKey</pre>
+<pre>om.soulgalore.web.pagesavings.run.SavingsForOneURL URL GoogleAPIKey</pre>
 
 
