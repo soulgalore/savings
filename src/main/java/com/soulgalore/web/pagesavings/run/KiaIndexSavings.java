@@ -30,7 +30,6 @@ import com.google.inject.Injector;
 import com.soulgalore.web.pagesavings.Reporter;
 import com.soulgalore.web.pagesavings.SavingsCollector;
 import com.soulgalore.web.pagesavings.SiteReader;
-import com.soulgalore.web.pagesavings.googlepagespeed.GooglePageSpeedSavingsCollector;
 import com.soulgalore.web.pagesavings.guice.KiaIndexModule;
 import com.soulgalore.web.pagesavings.impl.Site;
 import com.soulgalore.web.pagesavings.impl.SiteResult;
