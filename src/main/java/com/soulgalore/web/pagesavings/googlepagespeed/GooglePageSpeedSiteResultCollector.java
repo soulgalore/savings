@@ -46,7 +46,7 @@ public class GooglePageSpeedSiteResultCollector implements SiteResultCollector {
 	/**
 	 * The names of the response types that will be used to create total size.
 	 */
-	static String[] RESPONSE_SIZE_NAMES = { "htmlResponseBytes",
+	static final String[] RESPONSE_SIZE_NAMES = { "htmlResponseBytes",
 			"cssResponseBytes", "imageResponseBytes",
 			"javascriptResponseBytes", "otherResponseBytes" };
 
